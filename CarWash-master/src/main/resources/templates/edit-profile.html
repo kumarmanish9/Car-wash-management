@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="~{fragments/head.html}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{fragments/navbar.html}"></th:block>
+
+<div class="px-2 py-5 mx-2 bg-transparent ">
+    <div class="row d-flex m-5 bg-transparent justify-content-center">
+        <div class="card col-xl-7 col-lg-8 col-md-9 col-11 text-center" th:object="${profileEditDTO}">
+            <form class="form-card"
+                  th:action="@{/users/edit/{username}(username=${username})}"
+                  th:method="post">
+                <div class="row justify-content-between text-left">
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="form-group col-sm-6 flex-column d-flex"><label
+                            class="form-control-label px-3">Email</label>
+                        <input type="email" id="email"
+                               th:field="*{email}"
+                               th:value="*{email}"
+                                th:classappend="${#fields.hasErrors('email')} ? 'bg-danger'" is required>
+                        <p class="text-center mb-4 alert alert-danger" th:if="${#fields.hasErrors('email')}"
+                           th:each="msg : ${#fields.errors('email')}"
+                           th:text="${msg}"></p>
+                    </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"><label
+                            class="form-control-label px-3">Username</label>
+                        <input type="text" id="username"
+                               th:value="*{username}"
+                               th:field="*{username}"
+                               th:classappend="${#fields.hasErrors('username')} ? 'bg-danger'"
+                               min="3" max="20" required>
+                        <p class="text-center mb-4 alert alert-danger" th:if="${#fields.hasErrors('username')}"
+                           th:each="msg : ${#fields.errors('username')}"
+                           th:text="${msg}"></p>
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="form-control-label px-3" th:text="#{firstName}">
+                        </label> <input type="text" id="fname"
+                                        th:field="*{firstName}"
+                                        th:value="*{firstName}"
+                                        th:placeholder="#{firstName}">
+                    </div>
+                    <div class="form-group col-sm-6 flex-column d-flex">
+                        <label class="form-control-label px-3" th:text="#{lastName}"></label>
+                        <input type="text" id="lname"
+                               th:field="*{lastName}"
+                               th:value="*{lastName}"
+                               th:placeholder="#{lastName}">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex"><label
+                            class="form-control-label px-3" th:text="#{age}"></label>
+                        <input type="number" id="job"
+                               th:field="*{age}"
+                               th:value="*{age}"
+                               th:placeholder="#{age}"
+                               th:classappend="${#fields.hasErrors('age')} ? 'bg-danger'">
+                        <p class="text-center mb-4 alert alert-danger" th:if="${#fields.hasErrors('age')}"
+                           th:each="msg : ${#fields.errors('age')}"
+                           th:text="${msg}"></p>
+                    </div>
+                    <div class="form-group col-sm-6 flex-column d-flex"><label
+                            class="form-control-label px-3" th:text="#{city}"></label>
+                        <input type="text" id="city"
+                               th:field="*{city}"
+                               th:value="*{city}"
+                               th:placeholder="#{city}">
+                    </div>
+                </div>
+                <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex">
+                        <label class="form-control-label px-3" th:text="#{bio}"></label>
+                        <input type="text" id="ans"
+                               th:field="*{bio}"
+                               th:value="*{bio}"
+                               th:placeholder="#{bio}">
+                    </div>
+                </div>
+                <div class="row justify-content-between">
+                    <div class="form-group col-sm-12">
+                        <button type="submit" class="btn btn-outline-dark bg-secondary" th:text="#{submit}"></button>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <button type="button" class="btn btn-outline-dark bg-danger" th:text="#{deleteAccount}" onclick="deleteAccount()"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<th:block th:replace="~{fragments/footer.html}"></th:block>
+<script src="/js/delete-account.js"></script>
+</body>
+</html>

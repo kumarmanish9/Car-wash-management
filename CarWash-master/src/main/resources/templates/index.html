@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<th:block th:replace="~{fragments/head.html}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{fragments/navbar.html}"></th:block>
+
+<div id="email-not-validated" sec:authorize="isAuthenticated()">
+    <div th:unless="${emailNotValidated}" class="alert alert-danger text-center h4" >
+    <p th:text="#{pleaseVerifyYourEmail}"></p>
+    </div>
+</div>
+
+    <div class="mainContainer-index">
+        <blockquote id="index-response" class="index-quote">
+            <h3 th:text="#{welcome}"></h3>
+            <p th:text="#{welcomeServices}"></p>
+            <br>
+            <br>
+            <th:block sec:authorize="!isAuthenticated()" th:utext="#{anonymousIndex}"></th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <script>
+                    fetchIndex()
+                </script>
+            </th:block>
+        </blockquote>
+    </div>
+
+
+    <th:block th:replace="~{fragments/footer.html}"></th:block>
+
+    </body>
+</html>
