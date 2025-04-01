@@ -326,12 +326,12 @@ public class UserServiceImpl implements UserService {
         List<SocialMedia> socialMedias = new ArrayList<>();
         SocialMedia facebook = new SocialMedia();
         facebook.setType("facebook");
-        facebook.setLink("https://www.facebook.com/Borovaneca");
+        facebook.setLink("https://www.facebook.com/manish.singh.rajput.682332/");
         facebook.setUser(admin);
         socialMedias.add(facebook);
         SocialMedia github = new SocialMedia();
         github.setType("github");
-        github.setLink("https://github.com/Borovaneca");
+        github.setLink("https://github.com/kumarmanish9");
         github.setUser(admin);
         socialMedias.add(github);
         return socialMedias;
